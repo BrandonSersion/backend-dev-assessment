@@ -1,3 +1,9 @@
+# Core
 Django==1.10.8
-djangorestframework==3.5.4
 wheel==0.24.0
+
+# Rest apis
+djangorestframework==3.5.4
+
+# Testing
+factory-boy==2.11.1
