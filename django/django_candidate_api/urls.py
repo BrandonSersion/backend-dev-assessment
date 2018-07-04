@@ -1,3 +1,7 @@
+from django.conf.urls import url, include
+from rest_framework.routers import DefaultRouter
+
+
 """django_candidate_api URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,5 +17,10 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
+router = DefaultRouter()
+
+
 urlpatterns = [
+    url(r'^api/v1/', include(router.urls)),
 ]
