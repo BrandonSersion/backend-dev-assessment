@@ -8,11 +8,10 @@ class CandidateFactory(DjangoModelFactory):
 
     class Meta:
         model = 'candidates.Candidate'
-        django_get_or_create = ('name',)
 
     name = Faker('name')
     years_exp = randint(0, 99)
-    status = choice(Candidate.STATUS_CHOICES)
+    status = choice([Candidate.PENDING, Candidate.ACCEPTED, Candidate.REJECTED])
     date_applied = Faker('date_time')
     reviewed = Faker('boolean')
     description = Faker('sentence')
