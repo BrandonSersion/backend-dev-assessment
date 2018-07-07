@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core import validators
 
 
 class Candidate(models.Model):
@@ -15,7 +16,11 @@ class Candidate(models.Model):
     )
 
     name = models.CharField(max_length=256)
-    years_exp = models.IntegerField()
+    years_exp = models.PositiveSmallIntegerField(
+        validators = [
+            validators.MaxValueValidator(50),
+        ]
+    )
     status = models.CharField(choices=STATUS_CHOICES, default=PENDING, max_length=256)
     date_applied = models.DateTimeField()
     reviewed = models.BooleanField(default=False)

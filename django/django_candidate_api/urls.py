@@ -20,8 +20,8 @@ Including another URLconf
 """
 
 router = DefaultRouter()
-router.register(r'candidate', CandidateCRUDView)
-router.register(r'candidate-list', CandidateListView)
+router.register(r'candidate', CandidateCRUDView, base_name='candidate')
+router.register(r'candidate-list', CandidateListView, base_name='candidate-list')
 
 
 urlpatterns = [
