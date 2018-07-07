@@ -2,13 +2,14 @@ from rest_framework import serializers
 from .models import Candidate
 
 
-class CandidateCRUDSerializer(serializers.ModelSerializer):
+class CandidateSerializer(serializers.ModelSerializer):
     """
-    Serializes Candidate create, read, update, delete.
+    Serializes Candidate.
     """
     class Meta:
         model = Candidate
         fields = (
+            'id',
             'name',
             'years_exp',
             'status',

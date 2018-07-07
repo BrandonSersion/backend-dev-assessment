@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
+from candidates.views import CandidateCRUDView
 
 
 """django_candidate_api URL Configuration
@@ -19,6 +20,7 @@ Including another URLconf
 """
 
 router = DefaultRouter()
+router.register(r'candidate', CandidateCRUDView)
 
 
 urlpatterns = [

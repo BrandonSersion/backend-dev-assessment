@@ -9,6 +9,7 @@ class CandidateFactory(DjangoModelFactory):
     class Meta:
         model = 'candidates.Candidate'
 
+    id = 2
     name = Faker('name')
     years_exp = randint(0, 99)
     status = choice([Candidate.PENDING, Candidate.ACCEPTED, Candidate.REJECTED])

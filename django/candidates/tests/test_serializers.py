@@ -1,7 +1,7 @@
 from django.forms.models import model_to_dict
 from rest_framework.test import APITestCase
 from .factories import CandidateFactory
-from ..serializers import CandidateCRUDSerializer
+from ..serializers import CandidateSerializer
 
 
 class TestCandidateCRUDSerializer(APITestCase):
@@ -9,11 +9,11 @@ class TestCandidateCRUDSerializer(APITestCase):
         self.user_data = model_to_dict(CandidateFactory.build())
 
     def test_serializer_with_empty_data(self):
-        serializer = CandidateCRUDSerializer(data={})
+        serializer = CandidateSerializer(data={})
         assert not serializer.is_valid()
 
     def test_serializer_with_valid_data(self):
-        serializer = CandidateCRUDSerializer(data=self.user_data)
+        serializer = CandidateSerializer(data=self.user_data)
         assert serializer.is_valid()
 
 

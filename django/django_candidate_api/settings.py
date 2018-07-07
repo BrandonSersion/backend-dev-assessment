@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     # Third party apps
     'rest_framework',
+    'django_extensions',
+    'django_nose',
 
     # Our apps
     'candidates',
@@ -88,6 +90,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -128,6 +131,7 @@ STATIC_URL = '/static/'
 
 # Django Rest Framework
 REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 10)),
     'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S%z',
