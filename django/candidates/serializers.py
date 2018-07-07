@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Candidate
+from .validators import RestrictStatusUpdate
 
 
 class CandidateSerializer(serializers.ModelSerializer):
@@ -19,4 +20,12 @@ class CandidateSerializer(serializers.ModelSerializer):
             'created',
             'updated',
         )
-        
+
+
+
+    #     validators = [RestrictStatusUpdate('status')]
+
+    # def validate_status(self, value):
+    #     self.status = value
+    #     print(value)
+    #     return value
