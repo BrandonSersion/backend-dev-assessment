@@ -30,9 +30,10 @@ class RestrictStatusUpdate(object):
     #     self.instance = getattr(serializer, 'instance', None)
 
 
-
-
-
     # def validate_status(self, status):
     #     print(value.initial_data)
     #     print(value.status)
+
+    # def get_initial_field_value(self):
+#     print(self.status)
+#     print('WEOO')
