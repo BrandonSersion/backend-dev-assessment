@@ -21,7 +21,7 @@ Including another URLconf
 
 router = DefaultRouter()
 router.register(r'candidate', CandidateCRUDView, base_name='candidate')
-router.register(r'candidate-list', CandidateListView, base_name='candidate-list')
+router.register(r'candidates', CandidateListView, base_name='candidates')
 
 
 urlpatterns = [

@@ -1,7 +1,7 @@
 from factory.django import DjangoModelFactory
 from factory import Faker, Sequence
 from random import randint, choice
-from ..models import Candidate
+from ..models import Status
 
 
 class CandidateFactory(DjangoModelFactory):
@@ -11,8 +11,8 @@ class CandidateFactory(DjangoModelFactory):
 
     id = 2
     name = Faker('name')
-    years_exp = randint(0, 99)
-    status = choice([Candidate.PENDING, Candidate.ACCEPTED, Candidate.REJECTED])
+    years_exp = randint(0, 50)
+    status = choice([Status.PENDING, Status.ACCEPTED, Status.REJECTED])
     date_applied = Faker('date_time')
     reviewed = Faker('boolean')
     description = Faker('sentence')
