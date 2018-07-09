@@ -1,11 +1,10 @@
 from factory.django import DjangoModelFactory
-from factory import Faker, Sequence
 from random import randint
+from factory import Faker
 from ..models import Status
 
 
 class CandidateFactory(DjangoModelFactory):
-
     class Meta:
         model = 'candidates.Candidate'
 

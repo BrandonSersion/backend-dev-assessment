@@ -1,10 +1,14 @@
 # Core
 Django==1.10.8
-wheel==0.24.0
-
-# Rest apis
+django-filter==1.1.0
 djangorestframework==3.5.4
+wheel==0.24.0  # Included with the initial requirements.txt. Necessary?
 
 # Testing
 factory-boy==2.11.1
-django-nose==1.4.5
+Faker==0.8.16
+
+# Dependencies of Dependencies
+python-dateutil==2.7.3
+six==1.11.0
+text-unidecode==1.2

@@ -4,7 +4,7 @@ from .factories import CandidateFactory
 from ..serializers import CandidateSerializer
 
 
-class TestCandidateCRUDSerializer(APITestCase):
+class TestCandidateSerializer(APITestCase):
     def setUp(self):
         self.user_data = model_to_dict(CandidateFactory.build())
 
@@ -15,8 +15,3 @@ class TestCandidateCRUDSerializer(APITestCase):
     def test_serializer_with_valid_data(self):
         serializer = CandidateSerializer(data=self.user_data)
         assert serializer.is_valid()
-
-
-class TestCandidateListSerializer(APITestCase):
-    def setUp(self):
-        self.user_data = model_to_dict(CandidateFactory.build())

@@ -6,6 +6,7 @@ from rest_framework.exceptions import ValidationError
 
 
 class Status:
+    """Valid choices for Candidate 'status' field."""
     NONE = '0'
     PENDING = '1'
     ACCEPTED = '2'
@@ -18,6 +19,7 @@ class Status:
 
 
 class Candidate(models.Model):
+    """Candidates for job posting."""
     name = models.CharField(max_length=256)
     years_exp = models.PositiveSmallIntegerField(
         validators = [
@@ -44,12 +46,11 @@ class Candidate(models.Model):
         Auto update reviewed field to 'True' the first time a candidate
         updates from 'pending' to 'accepted' or 'rejected'.
 
-        Argument force_insert=False fixes exception on create:
+        Argument force_insert=False fixes exception sometimes triggered on create:
         "Cannot force both insert and updating in model saving."
         """
         # Special validation on update.
-
-        # Get status prior to update, to compare it to incoming status.
+        # Get status prior to update, compare it to update's status.
         try: prior_status = Candidate.objects.get(pk=self.pk).status
         except: prior_status = None
 

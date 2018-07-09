@@ -1,12 +1,12 @@
-from django import test
+from django.test import TestCase
 from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework.exceptions import ValidationError as RestValidationError
-from unittest import skip, expectedFailure
+from unittest import skip
 from .factories import CandidateFactory
-from ..models import Candidate, Status
+from ..models import Status
 
 
-class CandidateModelTest(test.TestCase):
+class CandidateModelTest(TestCase):
     def setUp(self):
         self.test_model = CandidateFactory.build()
 
@@ -69,7 +69,7 @@ class CandidateModelTest(test.TestCase):
             self.test_model.save()
 
 
-class CandidateModelSaveValidationTest(test.TestCase):
+class CandidateModelSaveValidationTest(TestCase):
     def setUp(self):
         self.test_model = CandidateFactory.build()
         self.test_model.full_clean()

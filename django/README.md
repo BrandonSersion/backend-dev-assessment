@@ -1,11 +1,15 @@
 # Candidate App
 
-Built with Python 2.7.12, Django 1.10.8. Uses sqlite3.
+API to list and interact with candidates for a job opening.
 
-To get started:
+Built with Python 3.6.5, Django 1.10.8, Django REST Framework 3.5.4. Uses sqlite3.
+
+## To get started:
 
 To install dependencies, run `pip install -r requirements.txt`
 
-Run `python manage.py migrate` to create and seed the database.
+To create and seed the database, run `python manage.py makemigrations` then `python manage.py migrate` 
 
 To start the server, run `python manage.py runserver`
+
+To test using the built-in test suite, run `python manage.py test`

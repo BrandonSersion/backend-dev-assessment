@@ -24,6 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^9-%5u9+3f#^99w-heplyrf6(#3ubq_i)yw=g2p4b+h6j@@$oy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# TODO change this for production.
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -42,8 +43,6 @@ INSTALLED_APPS = [
     # Third party apps
     'rest_framework',
     'django_filters',
-    'django_extensions',
-    'django_nose',
 
     # Our apps
     'candidates',
@@ -89,7 +88,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 
 # Password validation

@@ -1,14 +1,14 @@
-from django.core.urlresolvers import reverse, resolve
+from django.core.urlresolvers import reverse
 from django.forms.models import model_to_dict
-from rest_framework import test
+from rest_framework.test import APITestCase
 from .factories import CandidateFactory
 
 
-class TestCandidateViews(test.APITestCase):   
+class TestCandidateViews(APITestCase):
     def setUp(self):
         self.data = model_to_dict(CandidateFactory.build())
         # Override id with one that exists in production to test retrieve, update, delete.
-        # TODO replace with fixture.
+        # TODO replace with fixture or other solution.
         self.data['id'] = 2
         self.candidate_list_url = reverse('candidate-list')
         self.candidate_detail_url = reverse('candidate-detail', args=[self.data['id']])
