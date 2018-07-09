@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.core import validators
-from rest_framework import exceptions
+from rest_framework.exceptions import ValidationError
 
 
 class Status:
@@ -27,7 +27,7 @@ class Candidate(models.Model):
     status = models.CharField(
         choices=Status.CHOICES,
         default=Status.PENDING,
-        max_length=256
+        max_length=1,
     )
     date_applied = models.DateTimeField()
     reviewed = models.BooleanField(default=False)
@@ -47,17 +47,20 @@ class Candidate(models.Model):
         Argument force_insert=False fixes exception on create:
         "Cannot force both insert and updating in model saving."
         """
-        if self.pk:
-            prior_status = Candidate.objects.get(pk=self.pk).status
+        # Special validation on update.
 
-            if prior_status == Status.ACCEPTED and self.status == Status.REJECTED:
-                message = "Can't update accepted candidate directly into rejected. Update to pending first."
-                raise exceptions.ValidationError(message)
-            if prior_status == Status.REJECTED and self.status == Status.ACCEPTED:
-                message = "Can't update rejected candidate directly into accepted. Update to pending first."
-                raise exceptions.ValidationError(message)
+        # Get status prior to update, to compare it to incoming status.
+        try: prior_status = Candidate.objects.get(pk=self.pk).status
+        except: prior_status = None
 
-            if prior_status == Status.PENDING and (self.status == Status.ACCEPTED or self.status == Status.REJECTED):
-                self.reviewed = True
+        if (prior_status == Status.ACCEPTED) and (self.status == Status.REJECTED):
+            message = "Can't update accepted candidate directly into rejected. Update to pending first."
+            raise ValidationError(message)
+        if (prior_status == Status.REJECTED) and (self.status == Status.ACCEPTED):
+            message = "Can't update rejected candidate directly into accepted. Update to pending first."
+            raise ValidationError(message)
+
+        if prior_status == Status.PENDING and (self.status == Status.ACCEPTED or self.status == Status.REJECTED):
+            self.reviewed = True
 
         return super().save(*args, *kwargs)

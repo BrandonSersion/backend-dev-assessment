@@ -7,6 +7,9 @@ from .factories import CandidateFactory
 class TestCandidateViews(test.APITestCase):   
     def setUp(self):
         self.data = model_to_dict(CandidateFactory.build())
+        # Override id with one that exists in production to test retrieve, update, delete.
+        # TODO replace with fixture.
+        self.data['id'] = 2
         self.candidate_list_url = reverse('candidate-list')
         self.candidate_detail_url = reverse('candidate-detail', args=[self.data['id']])
         self.candidates_list_url = reverse('candidates-list')
@@ -15,7 +18,7 @@ class TestCandidateViews(test.APITestCase):
         response = self.client.post(self.candidate_list_url, self.data)
         self.assertEqual(201, response.status_code)
 
-    def test_retreive_candidate(self):
+    def test_retrieve_candidate(self):
         response = self.client.get(self.candidate_detail_url)
         self.assertEqual(200, response.status_code)
 
