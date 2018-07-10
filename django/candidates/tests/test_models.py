@@ -15,7 +15,7 @@ class CandidateModelTest(TestCase):
         self.test_model.full_clean()
         self.test_model.save()
 
-    @skip('Sqlite does not enforce this validation. Test later with Postgres.')
+    @skip('Sqlite does not enforce this constraint. Test later with Postgres.')
     def test_name_max_length_invalid(self):
         self.test_model.description = 'x' * 257
         with self.assertRaises(DjangoValidationError):
@@ -37,7 +37,7 @@ class CandidateModelTest(TestCase):
             self.test_model.full_clean()
             self.test_model.save()
 
-    @skip('Sqlite does not enforce this validation. Test later with Postgres.')
+    @skip('Sqlite does not enforce this constraint. Test later with Postgres.')
     def test_years_exp_min_value_invalid(self):
         self.test_model.years_exp = -1
         with self.assertRaises(DjangoValidationError):
@@ -74,7 +74,7 @@ class CandidateModelSaveValidationTest(TestCase):
         self.test_model = CandidateFactory.build()
         self.test_model.full_clean()
         self.test_model.save()
-    
+
     def test_cannot_update_from_accepted_to_rejected(self):
         self.test_model.status = Status.ACCEPTED
         self.test_model.full_clean()
@@ -97,19 +97,19 @@ class CandidateModelSaveValidationTest(TestCase):
         self.test_model.status = Status.ACCEPTED
         self.test_model.full_clean()
         self.test_model.save()
-        assert self.test_model.reviewed == True
+        assert self.test_model.reviewed is True
 
     def test_reviewed_auto_updates_when_rejected(self):
         self.test_model.status = Status.REJECTED
         self.test_model.full_clean()
         self.test_model.save()
-        assert self.test_model.reviewed == True
+        assert self.test_model.reviewed is True
 
     def test_reviewed_does_not_auto_update_when_left_pending(self):
         self.test_model.description = 'Changed'
         self.test_model.full_clean()
         self.test_model.save()
-        assert self.test_model.reviewed == False
+        assert self.test_model.reviewed is False
 
     def test_reviewed_does_not_auto_update_when_accepted_to_pending(self):
         # arrange
@@ -124,7 +124,7 @@ class CandidateModelSaveValidationTest(TestCase):
         self.test_model.full_clean()
         self.test_model.save()
         # assert
-        assert self.test_model.reviewed == False
+        assert self.test_model.reviewed is False
 
     def test_reviewed_does_not_auto_update_when_rejected_to_pending(self):
         # arrange
@@ -139,4 +139,4 @@ class CandidateModelSaveValidationTest(TestCase):
         self.test_model.full_clean()
         self.test_model.save()
         # assert
-        assert self.test_model.reviewed == False
+        assert self.test_model.reviewed is False

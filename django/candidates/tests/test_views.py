@@ -7,7 +7,8 @@ from .factories import CandidateFactory
 class TestCandidateViews(APITestCase):
     def setUp(self):
         self.data = model_to_dict(CandidateFactory.build())
-        # Override id with one that exists in production to test retrieve, update, delete.
+        # Override id with one that exists in development
+        # database to test retrieve, update, delete.
         # TODO replace with fixture or other solution.
         self.data['id'] = 2
         self.candidate_list_url = reverse('candidate-list')
